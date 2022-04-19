@@ -1,12 +1,15 @@
 import './search.styles.css'
 
 const Search = () => {
+
     return (
-        <input
+        <>
+            <input
             className="search-box" 
             type="text" 
             placeholder="Search Monsters"
-        />
+            />
+        </>
     )
 }
 
