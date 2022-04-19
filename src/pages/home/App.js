@@ -6,9 +6,6 @@ import Search from '../../components/search/search.component';
 import './App.css'
 import React from 'react'
 
-
-
-
 class App extends React.Component{
  /**Step 1 */
  constructor(){
@@ -39,13 +36,10 @@ class App extends React.Component{
         <h1>Monsters Rollodex</h1>
         <Search />
         <CardList monsters={this.state.users}/>
-        <p>{this.state.users.map(element => element.name)}</p>
       </div>
     )
   }
 }
-
-
 
 export default App
 
