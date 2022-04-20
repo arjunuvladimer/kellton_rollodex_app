@@ -6,9 +6,31 @@ import Search from '../../components/search/search.component';
 import './App.css'
 import React from 'react'
 
+
+// class Component{
+//   constructor(){
+//     this.state = {
+//       fun: function add(){
+        
+//       }
+//     };
+//     this.setState = () => {
+//       console.log("something")
+//     };
+//   }
+//   componentDidMount(){
+
+//   }
+//   render(){
+
+//   }
+// }
+
+// Parent Component
 class App extends React.Component{
  /**Step 1 */
  constructor(){
+  
     super()
     this.state = {
       users: []
@@ -30,6 +52,7 @@ class App extends React.Component{
 
   /**Step 2 */
   render(){
+    
     /**Step 3 */
     return(
       <div className="App">
