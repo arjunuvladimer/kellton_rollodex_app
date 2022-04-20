@@ -1,7 +1,7 @@
 import './card.styles.css'
 
-const Card = (props) => {
-    const {name,email, id} = props
+const Card = ({name,email, id}) => {
+    
     return (
         <>
             <div className="card-container">
