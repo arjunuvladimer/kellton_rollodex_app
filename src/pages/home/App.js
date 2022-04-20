@@ -60,8 +60,9 @@ class App extends React.Component{
   // [1,2,3,4,5]
   /**Step 2 */
   render(){
-    const filteredMonsters = this.state.users.filter(
-        (element, idx) => element.name === this.state.searchValue
+    const {users,searchValue } = this.state
+    const filteredMonsters = users.filter(
+      monster => monster.name.toLowerCase().includes(searchValue.toLowerCase())
     )
     /**Step 3 */
     return(
