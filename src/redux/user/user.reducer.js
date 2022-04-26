@@ -1,36 +1,23 @@
-// Axios for fetching api
-import axios from 'axios'
-
-import USER_ACTION_TYPES from "./user.type"
+import { USER_ACTION_TYPES } from "./user.type"
 
 const INTIAL_STATE = {
     users: [],
-    searchValue:''
+    searchValue: ''
 }
 
 const userReducer = (state = INTIAL_STATE, action) => {
-
     switch (action.type) {
-        case USER_ACTION_TYPES.STORE_USERS:
-            const monsters = axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(monsters => monsters)
-
-            return {
-                ...state,
-                users: monsters
+        case USER_ACTION_TYPES.GET_USERS:
+            return{
+                users: action.payload
+                // users: monsters
             }
-            break;
-        
-        case USER_ACTION_TYPES.SEARCH_USER:
-            return 
-            break;
-
 
         default:
             return state
-            break;
     }
 }
+
+// Returning Object => {users: [], searchValue: ''} to Store
 
 export default userReducer
