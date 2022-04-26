@@ -1,8 +1,9 @@
 // Importing Child Components Search, CardList
 import CardList from '../../components/card-list/card-list.component';
 import Search from '../../components/search/search.component';
+// 
 import {connect} from 'react-redux'
-import getUsers from '../../redux/user/user.action'
+import {getUsers, searchUser} from '../../redux/user/user.action'
 
 // App Styles
 import './App.css'
@@ -24,18 +25,20 @@ class App extends React.Component{
 
   // for Onchange Function in Search
   handleOnChange = (event) => {
+    const {sendSearchValue} = this.props
+    sendSearchValue(event.target.value)
   }
   
   render(){
-    const {getMonsters} = this.props
-    // const filteredMonsters = users.filter(
-    //   monster => monster.name.toLowerCase().includes(searchValue.toLowerCase())
-    // )
+    const {getMonsters,getSearchValue} = this.props
+    const filteredMonsters = getMonsters.filter(
+      monster => monster.name.toLowerCase().includes(getSearchValue.toLowerCase())
+    )
     return(
       <div className="App">
         <h1>Monsters Rollodex</h1>
         <Search changing = {this.handleOnChange}/>
-        <CardList monsters={getMonsters}/>
+        <CardList monsters={filteredMonsters}/>
       </div>
     )
   }
@@ -47,7 +50,8 @@ class App extends React.Component{
 // react component to redux store
 const mapStateToProps = (state) => (
   {
-    getMonsters: state.userState.users
+    getMonsters: state.userState.users,
+    getSearchValue: state.userState.searchValue
   } 
 )
 // Object is going to be returned to App Component 
@@ -56,9 +60,8 @@ const mapStateToProps = (state) => (
 
 const mapDisptachToProps = (dispatch) => (
   {
-    sendMonsters: function send(monsters) {
-      return dispatch(getUsers(monsters))
-    }
+    sendMonsters: monsters => dispatch(getUsers(monsters)),
+    sendSearchValue: username => dispatch(searchUser(username)) 
   }
 )
 
