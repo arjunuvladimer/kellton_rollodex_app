@@ -11,37 +11,41 @@ import React from 'react'
 
 import axios from 'axios'
 
+import { useEffect } from 'react';
+
 // Parent Component
-class App extends React.Component{
+const App = (props) => {
 
-  componentDidMount(){
-    const {sendMonsters} = this.props
-
-    axios.get('https://jsonplaceholder.typicode.com/users')
-    .then(response => sendMonsters(response.data))
-    // .then(response => sendMonsters([{},{}]))
-    // .then(response => sendMonsters(monsters))
-  }
+  useEffect(
+    () => {
+      const {sendMonsters} = props
+      axios.get('https://jsonplaceholder.typicode.com/users')
+      .then(response => sendMonsters(response.data))
+      // .then(response => sendMonsters([{},{}]))
+      // .then(response => sendMonsters(monsters))
+    }
+  )
+    
 
   // for Onchange Function in Search
-  handleOnChange = (event) => {
-    const {sendSearchValue} = this.props
+  const handleOnChange = (event) => {
+    const {sendSearchValue} = props
     sendSearchValue(event.target.value)
   }
   
-  render(){
-    const {getMonsters,getSearchValue} = this.props
+ 
+    const {getMonsters,getSearchValue} = props
     const filteredMonsters = getMonsters.filter(
       monster => monster.name.toLowerCase().includes(getSearchValue.toLowerCase())
     )
     return(
       <div className="App">
         <h1>Monsters Rollodex</h1>
-        <Search changing = {this.handleOnChange}/>
+        <Search changing = {handleOnChange}/>
         <CardList monsters={filteredMonsters}/>
       </div>
     )
-  }
+  
 }
 
 // Fetch the state/data from the store
